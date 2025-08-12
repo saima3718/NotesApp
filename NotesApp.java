@@ -38,14 +38,13 @@ public class NotesApp {
         System.out.println("2. Add Note");
         System.out.println("3. Clear All Notes");
         System.out.println("4. Exit");
-        //System.out.println("===============");
     }
 
     private static int getIntInput(String prompt) {
         System.out.print(prompt);
         while (!scanner.hasNextInt()) {
             System.out.println("Please enter a valid number!");
-            scanner.next(); // consume the invalid input
+            scanner.next(); 
             System.out.print(prompt);
         }
         return scanner.nextInt();
@@ -62,7 +61,7 @@ public class NotesApp {
             if (noteNumber == 1) {
                 System.out.println("No notes found.");
             }
-            //System.out.println("======================");
+        
         } catch (FileNotFoundException e) {
             System.out.println("No notes found. File doesn't exist yet.");
         } catch (IOException e) {
@@ -71,7 +70,7 @@ public class NotesApp {
     }
 
     private static void addNote() {
-        scanner.nextLine(); // Consume the newline left by nextInt()
+        scanner.nextLine(); 
         System.out.print("Enter your note: ");
         String note = scanner.nextLine();
         
@@ -85,12 +84,12 @@ public class NotesApp {
 
     private static void clearNotes() {
         System.out.print("Are you sure you want to clear all notes? (y/n): ");
-        scanner.nextLine(); // Consume the newline left by nextInt()
+        scanner.nextLine(); 
         String confirmation = scanner.nextLine().toLowerCase();
         
         if (confirmation.equals("y")) {
             try (FileWriter writer = new FileWriter(NOTES_FILE)) {
-                writer.write(""); // Overwrite with empty content
+                writer.write(""); 
                 System.out.println("All notes cleared successfully!");
             } catch (IOException e) {
                 System.out.println("Error clearing notes: " + e.getMessage());
@@ -99,4 +98,5 @@ public class NotesApp {
             System.out.println("Operation cancelled.");
         }
     }
+
 }
